@@ -112,10 +112,10 @@ public class Clientx {
 		});
 
 
-
 	}
 	private void captureAudio() {
 	    try {
+	    	System.out.println(IPaddress);
 	        sock = new Socket(IPaddress, 500);
 	        out = new BufferedOutputStream(sock.getOutputStream());
 	        in = new BufferedInputStream(sock.getInputStream());
