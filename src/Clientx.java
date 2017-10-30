@@ -72,7 +72,7 @@ public class Clientx {
 				display.sleep();
 			}
 		}*/
-		JFrame frame = new JFrame("Gold Squadron VOIP");
+		/*JFrame frame = new JFrame("Gold Squadron VOIP");
 		frame.setSize(850,400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
@@ -88,7 +88,7 @@ public class Clientx {
 		JPanel panel = new JPanel();
 		panel.add(button);
 		panel.add(label);
-		panel.add(IpAddressField);
+		//panel.add(IpAddressField);
 		frame.getContentPane().add(panel);
 
 		IpAddressField.addActionListener(new ActionListener() {
@@ -104,19 +104,19 @@ public class Clientx {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(e.getSource() == button) {
+				if(e.getSource() == button) {*/
 					Clientx tx = new Clientx();
 					tx.captureAudio();
-				}
+				/*}
 			}
-		});
+		});*/
 
 
 	}
 	private void captureAudio() {
 	    try {
-	    	System.out.println(IPaddress);
-	        sock = new Socket(IPaddress, 500);
+	    	//System.out.println(IPaddress);
+	        sock = new Socket("192.168.56.1", 1024);
 	        out = new BufferedOutputStream(sock.getOutputStream());
 	        in = new BufferedInputStream(sock.getInputStream());
 
@@ -130,7 +130,7 @@ public class Clientx {
 	        DataLine.Info dataLineInfo = new DataLine.Info(
 	                TargetDataLine.class, audioFormat);
 
-	        Mixer mixer = AudioSystem.getMixer(mixerInfo[3]);    //Select Available Hardware Devices for the micro, for my Notebook it is number 3.
+	        Mixer mixer = AudioSystem.getMixer(mixerInfo[1]);    //Select Available Hardware Devices for the micro, for my Notebook it is number 3.
 
 	        targetDataLine = (TargetDataLine) mixer.getLine(dataLineInfo);
 

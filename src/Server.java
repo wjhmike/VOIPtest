@@ -65,7 +65,7 @@ Server() throws LineUnavailableException, HeadlessException, UnknownHostExceptio
         sourceDataLine = (SourceDataLine) AudioSystem.getLine(dataLineInfo);
         sourceDataLine.open(audioFormat);
         sourceDataLine.start();
-        MyService = new ServerSocket(500);
+        MyService = new ServerSocket(1024);
         clientSocket = MyService.accept();
         captureAudio();
         input = new BufferedInputStream(clientSocket.getInputStream());
@@ -111,7 +111,7 @@ private void captureAudio() {
         System.out.println("Server Ip Address "+InetAddress.getLocalHost().getHostAddress());
         System.out.println("Available Hardware Devices:");
         for (int cnt = 0; cnt < mixerInfo.length; cnt++) {
-            mixer = AudioSystem.getMixer(mixerInfo[3]);      // Select Available Hardware Devices for the micro, for my Notebook it is number 3
+            mixer = AudioSystem.getMixer(mixerInfo[1]);      // Select Available Hardware Devices for the micro, for my Notebook it is number 3
             if (mixer.isLineSupported(dataLineInfo)) {
                 System.out.println(cnt+":"+mixerInfo[cnt].getName());
                 targetDataLine = (TargetDataLine) mixer.getLine(dataLineInfo);
