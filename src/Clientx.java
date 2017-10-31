@@ -42,7 +42,6 @@ public class Clientx {
 
 	private static JTextField IpAddressField;
 
-
 	/**
 	 * Launch the application.
 	 * @param args
@@ -72,7 +71,7 @@ public class Clientx {
 				display.sleep();
 			}
 		}*/
-		/*JFrame frame = new JFrame("Gold Squadron VOIP");
+		JFrame frame = new JFrame("Gold Squadron VOIP");
 		frame.setSize(850,400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
@@ -80,6 +79,7 @@ public class Clientx {
 		JButton button = new JButton("connect");
 		button.setBounds(37,35,50,10);
 		JLabel label = new JLabel("IP address: ");
+		JLabel connection = new JLabel("connect: "+ IPaddress);
 
 
 		IpAddressField = new JTextField(20);
@@ -88,7 +88,8 @@ public class Clientx {
 		JPanel panel = new JPanel();
 		panel.add(button);
 		panel.add(label);
-		//panel.add(IpAddressField);
+		panel.add(IpAddressField);
+		panel.add(connection);
 		frame.getContentPane().add(panel);
 
 		IpAddressField.addActionListener(new ActionListener() {
@@ -104,19 +105,18 @@ public class Clientx {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(e.getSource() == button) {*/
+				if(e.getSource() == button) {
 					Clientx tx = new Clientx();
 					tx.captureAudio();
-				/*}
+				}
 			}
-		});*/
+		});
 
 
 	}
 	private void captureAudio() {
 	    try {
-	    	//System.out.println(IPaddress);
-	        sock = new Socket("192.168.56.1", 1024);
+	        sock = new Socket(IPaddress, 1024);
 	        out = new BufferedOutputStream(sock.getOutputStream());
 	        in = new BufferedInputStream(sock.getInputStream());
 
