@@ -29,7 +29,7 @@ Socket clientSocket = null;
 InputStream input;
 TargetDataLine targetDataLine;
 OutputStream out;
-AudioFormat audioFormat;
+AudioFormat audioFormat = getAudioFormat();
 SourceDataLine sourceDataLine;
 int Size = 10000;
 byte tempBuffer[] = new byte[Size];
@@ -37,30 +37,29 @@ static Mixer.Info[] mixerInfo = AudioSystem.getMixerInfo();
 
 Server() throws LineUnavailableException, HeadlessException, UnknownHostException {
 	JFrame.setDefaultLookAndFeelDecorated(true);
-    JFrame frame = new JFrame("Network Phone");
+    JFrame frame = new JFrame("VOIP");
     JLabel label = new JLabel("Server ip: "+InetAddress.getLocalHost().getHostAddress(), JLabel.CENTER );
     frame.getContentPane().add( label );
     
     JLabel lblNewLabel = new JLabel("");
-    lblNewLabel.setIcon(new ImageIcon("F:\\Eclipse\\Eclipse_for_Java\\1.gif"));
+    //lblNewLabel.setIcon(new ImageIcon("F:\\Eclipse\\Eclipse_for_Java\\1.gif"));
     frame.getContentPane().add(lblNewLabel, BorderLayout.EAST);
     
     frame.setSize(600,400);
     frame.setVisible(true);
-    ImageIcon img = new ImageIcon("0.png");
-    frame.setIconImage(img.getImage());
+    //ImageIcon img = new ImageIcon("0.png");
+    //frame.setIconImage(img.getImage());
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     
 
 
     
-    ImageIcon imageIcon = new ImageIcon("0.png");
-    JLabel label1 = new JLabel(imageIcon);
+    //ImageIcon imageIcon = new ImageIcon("0.png");
+    //JLabel label1 = new JLabel(imageIcon);
    // frame.pack();
    // frame.show();
     try {
         Mixer mixer_ = AudioSystem.getMixer(mixerInfo[1]);   // Select Available Hardware Devices for the speaker, for my Notebook it is number 1
-        audioFormat = getAudioFormat();
         DataLine.Info dataLineInfo = new DataLine.Info(SourceDataLine.class, audioFormat);
         sourceDataLine = (SourceDataLine) AudioSystem.getLine(dataLineInfo);
         sourceDataLine.open(audioFormat);
@@ -83,9 +82,9 @@ Server() throws LineUnavailableException, HeadlessException, UnknownHostExceptio
 }
 
 private AudioFormat getAudioFormat() {
-    float sampleRate = 8000.0F;
+    float sampleRate = 48000.0F;
     int sampleSizeInBits = 16;
-    int channels = 2;
+    int channels = 1;
     boolean signed = true;
     boolean bigEndian = false;
     return new AudioFormat(
@@ -97,7 +96,7 @@ private AudioFormat getAudioFormat() {
 }
 
 public static void main(String s[]) throws LineUnavailableException, UnknownHostException {
-    Server s2 = new Server();
+    Server server = new Server();
     
 }
 

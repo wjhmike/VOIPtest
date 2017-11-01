@@ -155,6 +155,7 @@ public class Clientx {
 	        System.exit(0);
 	    }
 	}
+
 	class CaptureThread extends Thread {
 
 	    byte tempBuffer[] = new byte[10000];
