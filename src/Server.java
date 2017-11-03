@@ -18,7 +18,6 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.Mixer;
 import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.TargetDataLine;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -40,7 +39,7 @@ Server() throws LineUnavailableException, HeadlessException, UnknownHostExceptio
     JFrame frame = new JFrame("VOIP");
     JLabel label = new JLabel("Server ip: "+InetAddress.getLocalHost().getHostAddress(), JLabel.CENTER );
     frame.getContentPane().add( label );
-    
+
     JLabel lblNewLabel = new JLabel("");
     //lblNewLabel.setIcon(new ImageIcon("F:\\Eclipse\\Eclipse_for_Java\\1.gif"));
     frame.getContentPane().add(lblNewLabel, BorderLayout.EAST);
@@ -66,7 +65,7 @@ Server() throws LineUnavailableException, HeadlessException, UnknownHostExceptio
         sourceDataLine.start();
         MyService = new ServerSocket(1024);
         clientSocket = MyService.accept();
-        captureAudio();
+        jitterBuffer();
         input = new BufferedInputStream(clientSocket.getInputStream());
         out = new BufferedOutputStream(clientSocket.getOutputStream());
         while (input.read(tempBuffer) != -1) {
@@ -100,7 +99,7 @@ public static void main(String s[]) throws LineUnavailableException, UnknownHost
     
 }
 
-private void captureAudio() {
+private void jitterBuffer() {
     try {
 
         audioFormat = getAudioFormat();
